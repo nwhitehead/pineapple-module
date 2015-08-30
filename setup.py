@@ -11,7 +11,7 @@ setup(
   long_description=readme(),
   classifiers=[
     'Development Status :: 3 - Alpha',
-    'License :: OSI Approved :: MIT License',
+    'License :: OSI Approved :: ISC License (ISCL)',
     'Programming Language :: Python :: 2.7',
     'Framework :: IPython',
     'Topic :: Software Development :: Libraries :: Python Modules',
@@ -19,7 +19,7 @@ setup(
   url='https://github.com/nwhitehead/pineapple-module/',
   author='Nathan Whitehead',
   author_email='nwhitehe@gmail.com',
-  license='MIT',
+  license='ISC',
   keywords=['Pineapple', 'IPython', 'Jupyter', 'reproducible', 'versions', 'package', 'modules'],
   packages=['pineapple'],
   install_requires=[
