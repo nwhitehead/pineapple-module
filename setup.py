@@ -23,7 +23,7 @@ setup(
   keywords=['Pineapple', 'IPython', 'Jupyter', 'reproducible', 'versions', 'package', 'modules'],
   packages=['pineapple'],
   install_requires=[
-    'markdown',
+    'pip',
   ],
   zip_safe=False
 )
