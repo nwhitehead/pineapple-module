@@ -1,13 +1,14 @@
 from setuptools import setup
 
 def readme():
-  with open('README.md') as f:
+  with open('README.rst') as f:
     return f.read()
 
 setup(
   name='pineapple',
   version='0.1',
   description='Utility functions for the Pineapple IPython/Jupyter front-end',
+  long_description=readme(),
   classifiers=[
     'Development Status :: 3 - Alpha',
     'License :: OSI Approved :: MIT License',
