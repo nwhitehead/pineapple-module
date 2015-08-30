@@ -20,10 +20,10 @@ setup(
   author='Nathan Whitehead',
   author_email='nwhitehe@gmail.com',
   license='MIT',
+  keywords=['Pineapple', 'IPython', 'Jupyter', 'reproducible', 'versions', 'package', 'modules'],
   packages=['pineapple'],
   install_requires=[
     'markdown',
   ],
   zip_safe=False
 )
-
