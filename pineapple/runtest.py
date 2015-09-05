@@ -199,7 +199,6 @@ def runtest(*args, **kwargs):
     suite_list = []
     for arg in args:
         suite = loader.loadTestsFromTestCase(arg)
-        print(suite)
         suite_list.append(suite)
     big_suite = unittest.TestSuite(suite_list)
     runner = PineappleTestRunner(**kwargs)
