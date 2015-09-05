@@ -25,7 +25,7 @@ def color(txt, color=WHITE, bold=True, bgcolor=None, inverse=False):
         inversetxt = ";7"
     return u"\x1b[{}{}{}{}m{}\x1b[0m".format(boldtxt, colortxt, bgcolortxt, inversetxt, txt)
 
-class TextTestResult(unittest.result.TestResult):
+class PineappleTestResult(unittest.result.TestResult):
     """A test result class that can print formatted text results to a stream.
 
     Used by PineappleTestRunner.
@@ -34,7 +34,7 @@ class TextTestResult(unittest.result.TestResult):
     separator2 = u'\u2500' * 70 + '\n'
 
     def __init__(self, stream):
-        super(TextTestResult, self).__init__()
+        super(PineappleTestResult, self).__init__()
         self.stream = stream
 
     def getName(self, test):
@@ -47,7 +47,7 @@ class TextTestResult(unittest.result.TestResult):
         return ''
 
     def startTest(self, test):
-        super(TextTestResult, self).startTest(test)
+        super(PineappleTestResult, self).startTest(test)
         self.stream.write(u"  {}\n".format(color(self.getName(test), color=WHITE, bold=True)))
         self.stream.write(u"    ")
         self.stream.flush()
@@ -58,32 +58,32 @@ class TextTestResult(unittest.result.TestResult):
         self.stream.write('\n')
 
     def addSuccess(self, test):
-        super(TextTestResult, self).addSuccess(test)
+        super(PineappleTestResult, self).addSuccess(test)
         self.stream.write(color(CHECK, color=GREEN))
         self.addDescription(test)
 
     def addError(self, test, err):
-        super(TextTestResult, self).addError(test, err)
+        super(PineappleTestResult, self).addError(test, err)
         self.stream.write(color(SKULL, color=RED, bold=True, inverse=True))
         self.addDescription(test)
 
     def addFailure(self, test, err):
-        super(TextTestResult, self).addFailure(test, err)
+        super(PineappleTestResult, self).addFailure(test, err)
         self.stream.write(color(CROSS, color=RED))
         self.addDescription(test)
 
     def addSkip(self, test, reason):
-        super(TextTestResult, self).addSkip(test, reason)
+        super(PineappleTestResult, self).addSkip(test, reason)
         self.stream.write(color(SKIP, color=YELLOW))
         self.addDescription(test)
 
     def addExpectedFailure(self, test, err):
-        super(TextTestResult, self).addExpectedFailure(test, err)
+        super(PineappleTestResult, self).addExpectedFailure(test, err)
         self.stream.write(color(CHECK, color=GREEN))
         self.addDescription(test)
 
     def addUnexpectedSuccess(self, test):
-        super(TextTestResult, self).addUnexpectedSuccess(test)
+        super(PineappleTestResult, self).addUnexpectedSuccess(test)
         self.stream.write(color(CROSS, color=RED))
         self.addDescription(test)
 
@@ -113,10 +113,10 @@ class PineappleTestRunner(object):
     
     Uses color escapes and a few unicode symbols.
     """
-    resultclass = TextTestResult
+    resultclass = PineappleTestResult
 
-    def __init__(self, failfast=False, resultclass=None, verbosity=1):
-        self.stream = sys.stderr
+    def __init__(self, failfast=False, resultclass=None, verbosity=1, stream=sys.stderr):
+        self.stream = stream
         self.verbosity = verbosity
         self.failfast = failfast
         if resultclass is not None:
@@ -202,5 +202,5 @@ def runtest(*args, **kwargs):
         print(suite)
         suite_list.append(suite)
     big_suite = unittest.TestSuite(suite_list)
-    runner = PineappleTestRunner()
-    runner.run(big_suite);
+    runner = PineappleTestRunner(**kwargs)
+    return runner.run(big_suite);
