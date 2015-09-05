@@ -6,7 +6,7 @@ def readme():
 
 setup(
   name='pineapple',
-  version='0.1',
+  version='0.2',
   description='Utility functions for the Pineapple IPython/Jupyter front-end',
   long_description=readme(),
   classifiers=[
